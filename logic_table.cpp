@@ -6,6 +6,8 @@
 #include <queue>
 #include <unordered_map>
 #include <unordered_set>
+#include <map>
+#include <set>
 #include <cctype>
 
 #define debug(x) std::cout << #x << " is " << x << std::endl;
@@ -58,33 +60,29 @@ auto to_postfix(std::vector<char> tokens)
   return q;
 }
 
-auto get_variables(std::vector<char> tokens) {
-  std::unordered_map<char, bool> vars;
-  for (const char &t : tokens) {
+auto get_variable_names(std::vector<char>& tokens) {
+  std::set<char> var_names;
+  for (const char t : tokens) {
     if (std::isalpha(t)) {
-      vars.insert({ t, false });
+      var_names.insert(t);
     }
   }
-  return vars;
+  return std::vector<char>(var_names.begin(), var_names.end());
 }
 
-void set_variable_mask(std::unordered_map<char, bool>& vars, int mask) {
-  for (auto &v : vars) {
-    vars[v.first] = false;
+auto set_variable_mask(std::vector<char>& var_names, int mask) {
+  std::unordered_map<char, bool> vars_mask;
+  for (int i = 0; i < var_names.size(); i++) {
+    bool is_set_ith_bit = (mask & (1 << i)) != 0;
+    vars_mask[var_names[i]] = is_set_ith_bit;
   }
-  auto idx = std::begin(vars);
-  for (int i = 0; i < vars.size(); i++) {
-    if (mask & (1 << i)) {
-      std::advance(idx, i);
-      idx->second = true;
-    }
-  }
+  return vars_mask;
 }
 
-std::deque<char> set_expression_value(std::deque<char> expr, std::unordered_map<char, bool>& vars) {
+std::deque<char> set_expression_value(std::deque<char> expr, std::unordered_map<char, bool>& vars_mask) {
   for (int i = 0; i < expr.size(); i++) {
     if (std::isalpha(expr[i])) {
-        expr[i] = vars[expr[i]] ? '1' : '0';
+        expr[i] = vars_mask[expr[i]] ? '1' : '0';
     }
   }
   return expr;
@@ -115,24 +113,25 @@ bool evaluate(std::deque<char> &expr) {
   }
   return s.top() - '0';
 }
+
 /*
  * Ideja je da parsira logički iskaz poput
  * p | ((~q) & r)
- * i da generiše sve moguće istinosne tablice
+ * i da generiše istinosnu tablicu
 */
+
 int main()
 {
   std::string infix;
   std::getline(std::cin, infix);
   std::vector<char> tokens = tokenize(infix);
   auto postfix = to_postfix(tokens);
-  auto vars = get_variables(tokens);
-  for (int mask = (1 << vars.size()) - 1; mask >= 0; mask--) {
-    debug(mask);
-    set_variable_mask(vars, mask);
-    // auto expr = set_expression_value(postfix, vars);
-    // bool result = evaluate(expr);
-    // std::cout << result << '\n';
+  auto var_names = get_variable_names(tokens);
+  for (int mask = (1 << var_names.size()) - 1; mask >= 0; mask--) {
+    auto vars_mask = set_variable_mask(var_names, mask);
+    auto expr = set_expression_value(postfix, vars_mask);
+    bool result = evaluate(expr);
+    std::cout << result << '\n';
   }
 }
 
