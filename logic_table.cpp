@@ -31,8 +31,9 @@ auto to_postfix(std::vector<char> tokens)
   std::unordered_map<char, int> precedence;
   precedence['('] = 0;
   precedence['|'] = 1;
-  precedence['&'] = 2;
-  precedence['~'] = 3;
+  precedence['^'] = 2;
+  precedence['&'] = 3;
+  precedence['~'] = 4;
   std::deque<char> q;
   std::stack<char> s;
   for (const char &t : tokens) {
@@ -108,6 +109,8 @@ bool evaluate(std::deque<char> &expr) {
         el = L & R;
       } else if (t == '|') {
         el = L | R;
+      } else if (t == '^') {
+        el = L == R ? '0' : '1';
       }
       s.push(el);
     }
@@ -121,6 +124,11 @@ void print_table(std::vector<char>& var_names, std::vector<bool>& results) {
     std::cout << name << " | ";
   }
   std::cout << "*" << '\n';
+  const int table_width = var_names.size() * 4 + 2;
+  for (int i = 0; i < table_width; i++) {
+    std::cout << '-';
+  }
+  std::cout << '\n';
   for (int mask = (1 << var_names.size()) - 1; mask >= 0; mask--) {
     for (int i = 0; i < var_names.size(); i++) {
       bool is_set_ith_bit = mask & (1 << i);
