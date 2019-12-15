@@ -6,6 +6,7 @@
 #include <queue>
 #include <unordered_map>
 #include <unordered_set>
+#include <algorithm>
 #include <map>
 #include <set>
 #include <cctype>
@@ -114,6 +115,24 @@ bool evaluate(std::deque<char> &expr) {
   return s.top() - '0';
 }
 
+void print_table(std::vector<char>& var_names, std::vector<bool>& results) {
+  std::cout << "\n\n";
+  for (char name : var_names) {
+    std::cout << name << " | ";
+  }
+  std::cout << "*" << '\n';
+  for (int mask = (1 << var_names.size()) - 1; mask >= 0; mask--) {
+    for (int i = 0; i < var_names.size(); i++) {
+      bool is_set_ith_bit = mask & (1 << i);
+      char truth_var = is_set_ith_bit ? 'T' : 'F';
+      std::cout << truth_var << " | ";
+    }
+    char truth_result = results[mask] ? 'T' : 'F';
+    std::cout << truth_result << '\n';
+  }
+  std::cout << "\n\n";
+}
+
 /*
  * Ideja je da parsira logički iskaz poput
  * p | ((~q) & r)
@@ -127,11 +146,15 @@ int main()
   std::vector<char> tokens = tokenize(infix);
   auto postfix = to_postfix(tokens);
   auto var_names = get_variable_names(tokens);
+  std::vector<bool> table_results;
+  table_results.reserve(1 << var_names.size());
   for (int mask = (1 << var_names.size()) - 1; mask >= 0; mask--) {
     auto vars_mask = set_variable_mask(var_names, mask);
     auto expr = set_expression_value(postfix, vars_mask);
     bool result = evaluate(expr);
-    std::cout << result << '\n';
+    table_results.push_back(result);
   }
+  std::reverse(table_results.begin(), table_results.end());
+  print_table(var_names, table_results);
 }
 
