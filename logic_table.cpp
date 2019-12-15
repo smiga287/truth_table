@@ -1,13 +1,9 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include <vector>
 #include <stack>
-#include <queue>
 #include <unordered_map>
-#include <unordered_set>
 #include <algorithm>
-#include <map>
 #include <set>
 #include <cctype>
 
@@ -34,7 +30,7 @@ auto to_postfix(std::vector<char> tokens)
   precedence['^'] = 2;
   precedence['&'] = 3;
   precedence['~'] = 4;
-  std::deque<char> q;
+  std::vector<char> q;
   std::stack<char> s;
   for (const char &t : tokens) {
     if (t == '(') {
@@ -81,7 +77,7 @@ auto set_variable_mask(std::vector<char>& var_names, int mask) {
   return vars_mask;
 }
 
-std::deque<char> set_expression_value(std::deque<char> expr, std::unordered_map<char, bool>& vars_mask) {
+std::vector<char> set_expression_value(std::vector<char> expr, std::unordered_map<char, bool>& vars_mask) {
   for (int i = 0; i < expr.size(); i++) {
     if (std::isalpha(expr[i])) {
         expr[i] = vars_mask[expr[i]] ? '1' : '0';
@@ -90,7 +86,7 @@ std::deque<char> set_expression_value(std::deque<char> expr, std::unordered_map<
   return expr;
 }
 
-bool evaluate(std::deque<char> &expr) {
+bool evaluate(std::vector<char> &expr) {
   std::stack<char> s;
   char el, L, R;
   for (const char &t : expr) {
