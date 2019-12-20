@@ -26,10 +26,12 @@ auto to_postfix(std::vector<char> tokens)
 {
   std::unordered_map<char, int> precedence;
   precedence['('] = 0;
-  precedence['|'] = 1;
-  precedence['^'] = 2;
-  precedence['&'] = 3;
-  precedence['~'] = 4;
+  precedence['>'] = 1; // implication
+  precedence['='] = 1; // equivalence
+  precedence['^'] = 1; // exclusive disjunction
+  precedence['|'] = 2; // disjunction
+  precedence['&'] = 2; // conjunction
+  precedence['~'] = 3; // negation
   std::vector<char> q;
   std::stack<char> s;
   for (const char &t : tokens) {
@@ -107,6 +109,10 @@ bool evaluate(std::vector<char> &expr) {
         el = L | R;
       } else if (t == '^') {
         el = L == R ? '0' : '1';
+      } else if (t == '>') {
+        el = L == '1' && R == '0' ? '0' : '1';
+      } else if (t == '=') {
+        el = L == R ? '1' : '0';
       }
       s.push(el);
     }
