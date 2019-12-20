@@ -88,6 +88,17 @@ std::vector<char> set_expression_value(std::vector<char> expr, std::unordered_ma
   return expr;
 }
 
+bool apply_binary_logic_operator(char op, char L, char R) {
+  switch (op) {
+  case '&': return L & R - '0';
+  case '|': return L | R - '0';
+  case '^': return L != R;
+  case '>': return !(L == '1' && R == '0');
+  case '=': return L == R;
+  }
+  return -1; // check this out
+}
+
 bool evaluate(std::vector<char> &expr) {
   std::stack<char> s;
   char el, L, R;
@@ -103,18 +114,7 @@ bool evaluate(std::vector<char> &expr) {
       s.pop();
       L = s.top();
       s.pop();
-      if (t == '&') {
-        el = L & R;
-      } else if (t == '|') {
-        el = L | R;
-      } else if (t == '^') {
-        el = L == R ? '0' : '1';
-      } else if (t == '>') {
-        el = L == '1' && R == '0' ? '0' : '1';
-      } else if (t == '=') {
-        el = L == R ? '1' : '0';
-      }
-      s.push(el);
+      s.push(apply_binary_logic_operator(t, L, R) ? '1' : '0');
     }
   }
   return s.top() - '0';
