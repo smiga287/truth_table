@@ -90,8 +90,8 @@ std::vector<char> set_expression_value(std::vector<char> expr, std::unordered_ma
 
 bool apply_binary_logic_operator(char op, char L, char R) {
   switch (op) {
-  case '&': return L & R - '0';
-  case '|': return L | R - '0';
+  case '&': return (L & R) - '0';
+  case '|': return (L | R) - '0';
   case '^': return L != R;
   case '>': return !(L == '1' && R == '0');
   case '=': return L == R;
