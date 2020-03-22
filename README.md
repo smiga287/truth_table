@@ -33,16 +33,14 @@ Build by making a build directory (i.e. `build/`), run `cmake` in that directory
 
 After successfully building and running the program you should input a logical formula that consists of `logical variables` presented as letters, `()` and `logical operators` given in the table below (sorted by priority).
 
-<center>
-operator | meaning
-     --- | ---
+| operator | meaning |
+|     --- | ---      |
 ~        | negation
 &        | conjunction
 \|       | disjunction
 ^        | exclusive disjunction
 \>       | implication
 =        | equivalence
-</center>
 
 Example of running the program and its output:
 ```bash
