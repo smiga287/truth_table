@@ -1,4 +1,4 @@
-#include "logic_table.hpp"
+#include "truth_table.hpp"
 #include "logic_expression.hpp"
 #include "valuation.hpp"
 #include "table.hpp"
@@ -23,7 +23,7 @@ std::vector<char> tokenize(std::string &x) {
   return tokens;
 }
 
-void logic_table() {
+void truth_table() {
   std::string infix;
   std::getline(std::cin, infix);
   vector<char> tokens = tokenize(infix);

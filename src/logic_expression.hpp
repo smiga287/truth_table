@@ -1,7 +1,7 @@
 #ifndef LOGIC_EXPRESSION
 #define LOGIC_EXPRESSION
 
-#include "logic_table.hpp"
+#include "truth_table.hpp"
 #include <stack>
 #include <set>
 

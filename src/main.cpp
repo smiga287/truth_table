@@ -1,5 +1,5 @@
-#include "logic_table.hpp"
+#include "truth_table.hpp"
 
 int main() {
-  logic_table();
+  truth_table();
 }

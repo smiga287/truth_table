@@ -1,7 +1,7 @@
 #ifndef VARIATION
 #define VARIATION
 
-#include "logic_table.hpp"
+#include "truth_table.hpp"
 
 class Variation {
 private:

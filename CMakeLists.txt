@@ -9,7 +9,7 @@ endif()
 cmake_minimum_required(VERSION 3.16)
 
 
-project(LogicTable
+project(TruthTable
   VERSION 1.0
   LANGUAGES CXX)
 
@@ -24,7 +24,7 @@ set(SOURCES
   src/valuation.cpp src/valuation.hpp
   src/variation.cpp src/variation.hpp
   src/table.cpp src/table.hpp
-  src/logic_table.cpp src/logic_table.hpp
+  src/truth_table.cpp src/truth_table.hpp
 )
 
-add_executable(logic_table src/main.cpp ${SOURCES})
+add_executable(truth_table src/main.cpp ${SOURCES})

@@ -2,7 +2,7 @@
 #define TABLE
 
 #include "logic_expression.hpp"
-#include "logic_table.hpp"
+#include "truth_table.hpp"
 #include <iostream>
 
 class Table {

@@ -2,7 +2,7 @@
 #define VALUATION
 
 #include "logic_expression.hpp"
-#include "logic_table.hpp"
+#include "truth_table.hpp"
 #include "variation.hpp"
 #include <cassert>
 

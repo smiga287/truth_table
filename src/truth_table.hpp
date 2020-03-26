@@ -13,6 +13,6 @@ using std::vector;
 
 using LogicVar = char; // check out C++20 concepts to narrow down to letters
 
-void logic_table();
+void truth_table();
 
 #endif
