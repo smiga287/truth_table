@@ -1,6 +1,6 @@
-# Logic Table
+# Truth Table
 
-This program parses an infix logical expression and displays the interpretation of every valuation of the logical terms in a table a.k.a. tautology table
+This program parses an infix logical expression and displays the interpretation of every valuation of the logical terms in a table a.k.a. truth table
 
 I created the project because I found it tedious to check every possible variation by hand multiple times just to confirm I did a problem correctly in my Discrete Structures 1 class. I learned a lot about parsing and combinatorial algorithms, but I've learned the most about creating a modern `C++` project.
 
@@ -11,14 +11,15 @@ I hope that anybody reading the code could learn something new.
 The project was developed and tested on Linux. Windows support isn't tested. 
 
 - `cmake` >= 3.16 (lower versions will probably work but it isn't tested)
-- `make`
+- `make` (I used GNU Make 4.3, other will probably work)
+- `clang++` >= 9.0.1 (or any other compiler that supports C++20)
 
 ## Building
 
 Clone the repository locally and go into the created directory:
 ```bash
-> git clone https://github.com/smiga287/logic_table.git
-> cd logic_table
+> git clone https://github.com/smiga287/truth_table.git
+> cd truth_table
 ```
 
 Build by making a build directory (i.e. `build/`), run `cmake` in that directory, and then use `make` to build the project and try it out!
@@ -26,7 +27,7 @@ Build by making a build directory (i.e. `build/`), run `cmake` in that directory
 > mkdir build && cd build
 > cmake .. 
 > make
-> ./logic_table
+> ./truth_table
 ```
 
 ## Usage
@@ -44,7 +45,7 @@ After successfully building and running the program you should input a logical f
 
 Example of running the program and its output:
 ```bash
-> ./logic_table # we are continuing from where we left off
+> ./truth_table # we are continuing from where we left off
 (~q | ~(r = p)) ^ (p & (r > ~p))
 
 p | q | r | *
