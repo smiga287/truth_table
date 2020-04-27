@@ -18,6 +18,7 @@ public:
   Valuation(const LogicExpression &expr);
   bool &operator[](LogicVar &var);
   bool next_valuation();
+  unordered_map<LogicVar, bool> get_mapping();
 };
 
 #endif

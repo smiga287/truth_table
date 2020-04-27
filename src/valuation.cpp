@@ -14,6 +14,8 @@ void Valuation::set_mapping(const vector<bool> &values) {
   }
 }
 
+unordered_map<LogicVar, bool> Valuation::get_mapping() { return mapping; }
+
 bool &Valuation::operator[](LogicVar &var) {
   assert(mapping.contains(var));
   return mapping[var];

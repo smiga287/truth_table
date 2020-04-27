@@ -34,7 +34,8 @@ void truth_table() {
   Table results(expr);
 
   do {
-    results.push_back(expr.evaluate(val));
+    unordered_map<LogicVar, bool> valuation_map = val.get_mapping();
+    results.insert(valuation_map, expr.evaluate(val));
   } while (val.next_valuation());
 
   results.print();

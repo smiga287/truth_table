@@ -7,6 +7,7 @@
 #include <vector>
 #define debug(x) std::cout << #x << " is " << x << std::endl;
 
+using std::pair;
 using std::string;
 using std::unordered_map;
 using std::vector;
