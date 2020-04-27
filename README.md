@@ -45,19 +45,19 @@ After successfully building and running the program you should input a logical f
 
 Example of running the program and its output:
 ```bash
-> ./truth_table # we are continuing from where we left off
+> ./truth_table # continuing from where we left off
 (~q | ~(r = p)) ^ (p & (r > ~p))
 
-p | q | r | *
---------------
-T | T | T | F
-F | T | T | F
-T | F | T | T
-F | F | T | F
-T | T | F | T
-F | T | F | F
-T | F | F | T
-F | F | F | T
+p │ q │ r │ *
+─────────────
+T │ T │ T │ F
+T │ T │ F │ F
+T │ F │ T │ T
+T │ F │ F │ F
+F │ T │ T │ T
+F │ T │ F │ F
+F │ F │ T │ T
+F │ F │ F │ T
 ```
 
 ## Contributing

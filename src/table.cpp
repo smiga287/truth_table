@@ -33,5 +33,6 @@ void Table::print() {
     }
     std::cout << display_truth(eval) << '\n';
   }
+
   std::cout << "\n\n";
 }
