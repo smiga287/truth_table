@@ -1,7 +1,8 @@
 #include "truth_table.hpp"
 #include "logic_expression.hpp"
-#include "valuation.hpp"
 #include "table.hpp"
+#include "valuation.hpp"
+#include "variation.hpp"
 
 // TODO: Consider changing LogicVar to LogicTerm or Term
 // TODO: Add input validation
@@ -14,9 +15,9 @@ std::vector<char> tokenize(std::string &x) {
   const size_t aprox_token_count = x.size() / 2 + 1;
   tokens.reserve(aprox_token_count);
   for (const char token : x) {
-    if (!std::isspace(
-            token)) { // consider adding whether allowed symbols were given
-                      // insted of taking every non white-space char
+    // consider adding whether allowed symbols were given
+    // insted of taking every non white-space char
+    if (!std::isspace(token)) {
       tokens.push_back(token);
     }
   }
@@ -38,4 +39,3 @@ void truth_table() {
 
   results.print();
 }
-

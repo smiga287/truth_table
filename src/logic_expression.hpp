@@ -2,11 +2,10 @@
 #define LOGIC_EXPRESSION
 
 #include "truth_table.hpp"
-#include <stack>
 #include <set>
+#include <stack>
 
-class Valuation; // This should fix circular refferencing 
-// #include "valuation.hpp"
+class Valuation; // This should fix circular refferencing
 
 class LogicExpression {
 private:
@@ -17,6 +16,7 @@ private:
   vector<char> to_postfix(vector<char> &tokens);
   vector<char> set_valuation(Valuation &val);
   bool evaluate(vector<char> &expr);
+  bool apply_binary_logic_operator(char op, char L, char R);
 
 public:
   LogicExpression(vector<char> &tokens);

@@ -1,6 +1,9 @@
 #include "valuation.hpp"
+#include "logic_expression.hpp"
+#include "variation.hpp"
 
-Valuation::Valuation(const LogicExpression &expr) : vars(expr.get_vars()), v(expr.get_vars().size()) {
+Valuation::Valuation(const LogicExpression &expr)
+    : vars(expr.get_vars()), v(expr.get_vars().size()) {
   vector<bool> init(vars.size(), false);
   set_mapping(init);
 }
@@ -11,7 +14,7 @@ void Valuation::set_mapping(const vector<bool> &values) {
   }
 }
 
-bool& Valuation::operator[](LogicVar &var) {
+bool &Valuation::operator[](LogicVar &var) {
   assert(mapping.contains(var));
   return mapping[var];
 }

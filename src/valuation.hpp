@@ -1,10 +1,11 @@
 #ifndef VALUATION
 #define VALUATION
 
-#include "logic_expression.hpp"
 #include "truth_table.hpp"
 #include "variation.hpp"
 #include <cassert>
+
+class LogicExpression;
 
 class Valuation {
 private:
