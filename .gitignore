@@ -1,3 +1,4 @@
 build/*
 compile_flags.txt
 learning_resources/*
+.vscode
