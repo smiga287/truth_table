@@ -1,36 +1,17 @@
 #include "expression_tree.hpp"
 
-class ExpressionTree {
-private:
-  struct Node {
-    char val;
-    Node* left;
-    Node* right;
-    Node(char _val) : val(_val){};
-    Node(char _val, Node *_left, Node *_right)
-        : val(_val), left(_left), right(_right){};
-  };
-
-  Node* root;
-
-  void add_node(std::stack<Node*> &nodes, char op);
-
-public:
-  ExpressionTree(vector<char> &tokens);
-};
-
-void ExpressionTree::add_node(std::stack<Node*> &nodes, char op) {
-  Node *right = nodes.top();
+void ExpressionTree::add_node(std::stack<ExprNode*> &nodes, char op) {
+  ExprNode *right = nodes.top();
   nodes.pop();
-  Node *left = nodes.top();
+  ExprNode *left = nodes.top();
   nodes.pop();
-  nodes.push(new Node(op, left, right));
+  nodes.push(new ExprNode(op, left, right));
 }
 
 ExpressionTree::ExpressionTree(vector<char> &tokens) {
   static unordered_map<char, int> precedence{{'>', 1}, {'=', 1}, {'^', 1},
                                              {'|', 2}, {'&', 2}, {'~', 3}};
-  std::stack<Node*> nodes;
+  std::stack<ExprNode*> nodes;
   std::stack<char> ops;
   for (const char t : tokens) {
     if (t == '(') {
@@ -49,7 +30,8 @@ ExpressionTree::ExpressionTree(vector<char> &tokens) {
       }
       ops.push(t);
     } else { // t is a LogicVar
-      nodes.push(new Node(t));
+      nodes.push(new ExprNode(t));
+      leaves.push_back(nodes.top()); // populates the leaves vector
     }
   }
   while (!ops.empty()) {
@@ -59,3 +41,12 @@ ExpressionTree::ExpressionTree(vector<char> &tokens) {
   root = nodes.top();
   nodes.pop();
 }
+
+IteratorProxy<vector<ExprNode*>> ExpressionTree::iter_leaves() {
+  return IteratorProxy<vector<ExprNode*>>(leaves);
+}
+
+// IteratorProxy<IteratorPostorder> ExpressionTree::iter_postorder() {
+//   IteratorPostorder it();
+//   return IteratorProxy<IteratorPostorder>(it);
+// }
