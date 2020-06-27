@@ -6,7 +6,7 @@
 #include "input.hpp"
 
 // TODO: Consider changing LogicVar to LogicTerm or Term
-// TODO: Add input validation
+// TODO: Add input validation (LR parser would do the job)
 // TODO: redesign iteration when C++20 ranges are ready
 
 void truth_table() {

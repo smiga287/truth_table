@@ -16,6 +16,7 @@ std::vector<char> tokenize(std::string &x) {
   return tokens;
 }
 
+// plays the role of a lexer
 vector<char> get_tokens() {
   std::string infix;
   std::getline(std::cin, infix);

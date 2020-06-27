@@ -30,32 +30,24 @@ struct ExprNode {
     ExprNode(char _code) : code(_code){};
     ExprNode(char _code, ExprNode* _left, ExprNode* _right)
         : code(_code), left(_left), right(_right){};
-    bool is_op() { 
-      // TODO
-      return false; 
-    }
-    bool is_unary() {
-      // TODO
-      return false;
-    }
 };
 
 // TODO
 class IteratorPostorder {
 };
 
-class ExpressionTree {
+class ExprTree {
 private:
 
   ExprNode* root;
   vector<ExprNode*> leaves;
 
-  void add_node(std::stack<ExprNode*> &nodes, char op);
+  void add_operator_node(std::stack<ExprNode*> &nodes, char op_code);
 
 public:
-  ExpressionTree(vector<char> &tokens);
+  ExprTree(vector<char> &tokens);
   IteratorProxy<vector<ExprNode*>> iter_leaves();
-  IteratorProxy<IteratorPostorder> iter_postorder();
+  // IteratorProxy<IteratorPostorder> iter_postorder();
 };
 
 

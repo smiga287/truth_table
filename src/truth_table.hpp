@@ -12,7 +12,7 @@ using std::string;
 using std::unordered_map;
 using std::vector;
 
-using LogicVar = char; // check out C++20 concepts to narrow down to letters
+using LogicVar = char; // TODO: check out C++20 concepts to narrow down to letters
 
 void truth_table();
 
