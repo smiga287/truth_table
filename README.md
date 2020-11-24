@@ -1,10 +1,10 @@
-# Truth Table
+# Logic Transformer 
 
-This program parses an infix logical expression and displays the interpretation of every valuation of the logical terms in a table a.k.a. truth table
+This program parses an infix logical expression and optionally transforms it to DNF, KNF, or prints it's truth table.
 
-I created the project because I found it tedious to check every possible variation by hand multiple times just to confirm I did a problem correctly in my Discrete Structures 1 class. I learned a lot about parsing and combinatorial algorithms, but I've learned the most about creating a modern `C++` project.
+Originally I used it to learn more about combinatorial algorithms, while unknowingly creating a "gateway drug" into the world of parsers, formal languages, and finite/push-down automata. 
 
-I hope that anybody reading the code could learn something new.
+It also showed me how different (and exponentially more difficult) it was to (correctly) set up a build system for ```C++``` in comparison to ```node.js```.  
 
 ## Dependencies
 
@@ -18,8 +18,8 @@ The project was developed and tested on Linux. Windows support isn't tested.
 
 Clone the repository locally and go into the created directory:
 ```bash
-> git clone https://github.com/smiga287/truth_table.git
-> cd truth_table
+> git clone https://github.com/smiga287/logic_transformer.git
+> cd logic_transformer
 ```
 
 Build by making a build directory (i.e. `build/`), run `cmake` in that directory, and then use `make` to build the project and try it out!
@@ -27,7 +27,7 @@ Build by making a build directory (i.e. `build/`), run `cmake` in that directory
 > mkdir build && cd build
 > cmake .. 
 > make
-> ./truth_table
+> ./logic_tranformer
 ```
 
 ## Usage
@@ -45,7 +45,7 @@ After successfully building and running the program you should input a logical f
 
 Example of running the program and its output:
 ```bash
-> ./truth_table # continuing from where we left off
+> ./logic_transformer # continuing from where we left off
 (~q | ~(r = p)) ^ (p & (r > ~p))
 
 p │ q │ r │ *
@@ -65,11 +65,9 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 ## Todo
 
-- [ ] Make the program more user friendly
-- [ ] Add more descriptive comments
-- [ ] Add unit tests
-- [ ] Transition to using C++20 ranges and concepts when the compiler support allows it
-
+- [ ] [WIP] Explore different parsing methods 
+- [ ] [WIP] DNF/KNF
+- [ ] Make the program more user and cli friendly
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)

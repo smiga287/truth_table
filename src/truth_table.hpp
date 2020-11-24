@@ -14,6 +14,8 @@ using std::vector;
 
 using LogicVar = char; // check out C++20 concepts to narrow down to letters
 
-void truth_table();
+class LogicExpression;
+
+void truth_table(LogicExpression expr);
 
 #endif

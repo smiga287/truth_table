@@ -8,7 +8,7 @@
 // or the actual tree could be immutable while only changing the map
 // TODO: validation is in the slides
 
-LogicExpression::LogicExpression(vector<char> &tokens)
+LogicExpression::LogicExpression(vector<char> tokens)
     : vars(extract_vars(tokens)), postfix_expr(to_postfix(tokens)) {}
 
 const vector<LogicVar> &LogicExpression::get_vars() const { return vars; }

@@ -19,7 +19,7 @@ private:
   bool apply_binary_logic_operator(char op, char L, char R);
 
 public:
-  LogicExpression(vector<char> &tokens);
+  LogicExpression(vector<char> tokens);
   const vector<LogicVar> &get_vars() const;
 
   bool evaluate(Valuation &val);

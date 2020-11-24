@@ -9,7 +9,7 @@ endif()
 cmake_minimum_required(VERSION 3.16)
 
 
-project(TruthTable
+project(LogicTransformer
   VERSION 1.0
   LANGUAGES CXX)
 
@@ -27,4 +27,4 @@ set(SOURCES
   src/truth_table.cpp src/truth_table.hpp
 )
 
-add_executable(truth_table src/main.cpp ${SOURCES})
+add_executable(logic_transformer src/main.cpp ${SOURCES})
