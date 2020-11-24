@@ -14,7 +14,6 @@ private:
   ExprTree expr_tree;
 
   vector<LogicVar> extract_vars(vector<char> &tokens);
-  vector<char> to_postfix(vector<char> &tokens);
   vector<char> set_valuation(Valuation &val);
   bool evaluate(vector<char> &expr);
   bool apply_binary_logic_operator(char op_code, bool left_child, bool right_child);

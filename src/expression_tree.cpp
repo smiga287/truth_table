@@ -33,7 +33,6 @@ ExprTree::ExprTree(vector<char> &tokens) {
       ops.push(t);
     } else { // t is a LogicVar
       nodes.push(new ExprNode(t));
-      leaves.push_back(nodes.top()); // populates the leaves vector
     }
   }
   while (!ops.empty()) {
@@ -42,14 +41,32 @@ ExprTree::ExprTree(vector<char> &tokens) {
   }
   root = nodes.top();
   nodes.pop();
+  create_postorder_links(root);
 }
 
-// Returns a range iterator on leaves
-IteratorProxy<vector<ExprNode*>> ExprTree::iter_leaves() {
-  return IteratorProxy<vector<ExprNode*>>(leaves);
+// Connects a pointer for each node to the next node in the postorder traversal of the tree
+void ExprTree::create_postorder_links(ExprNode* root) {
+  static ExprNode* prev = nullptr;
+  if (!root) {
+    return;
+  }
+  create_postorder_links(root->left);
+  create_postorder_links(root->right);
+  if (prev) {
+    prev->postorder_link = root;
+  }
+  prev = root;
 }
 
-// Returns a range iterator which does a postorder traversal
-// IteratorProxy<IteratorPostorder> ExprTree::iter_postorder() {
-// TODO
-// }
+// Goes to the leftmost child to begin postorder traversal
+PostorderIterator ExprTree::begin() const {
+    ExprNode* curr = root;
+    while (curr && curr->left) {
+        curr = curr->left;
+    }
+    return PostorderIterator(this, curr);
+}
+
+PostorderIterator ExprTree::end() const {
+    return PostorderIterator(this, nullptr);
+}

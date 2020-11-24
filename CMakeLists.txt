@@ -22,6 +22,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(SOURCES
   src/input.cpp src/input.hpp
   src/expression_tree.cpp src/expression_tree.hpp
+  src/postorder_iterator.cpp src/postorder_iterator.hpp
   src/logic_expression.cpp src/logic_expression.hpp
   src/valuation.cpp src/valuation.hpp
   src/variation.cpp src/variation.hpp

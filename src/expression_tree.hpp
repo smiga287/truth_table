@@ -4,51 +4,34 @@
 #include <memory>
 #include <stack>
 #include <vector>
+#include "postorder_iterator.hpp"
 
-template<typename Container>
-class IteratorProxy {
-  private:
-    Container& _container;
-  public:
-    IteratorProxy(Container& container) : _container(container) {};
-
-    typename Container::iterator begin() {
-      return _container.begin();
-    }
-
-    typename Container::iterator end() {
-      return _container.end();
-    }
-};
+// class PostorderIterator;
 
 struct ExprNode {
-    bool valuation;
     char code;
     ExprNode* left;
     ExprNode* right;
-    vector<ExprNode*> leaves;
-    ExprNode(char _code) : code(_code){};
+    ExprNode* postorder_link;
+    ExprNode(char _code) : code(_code), left(nullptr), right(nullptr), postorder_link(nullptr) {};
     ExprNode(char _code, ExprNode* _left, ExprNode* _right)
-        : code(_code), left(_left), right(_right){};
-};
-
-// TODO
-class IteratorPostorder {
+        : code(_code), left(_left), right(_right), postorder_link(nullptr) {};
 };
 
 class ExprTree {
 private:
-
   ExprNode* root;
-  vector<ExprNode*> leaves;
 
-  void add_operator_node(std::stack<ExprNode*> &nodes, char op_code);
+  void add_operator_node(std::stack<ExprNode*>& nodes, char op_code);
+  void create_postorder_links(ExprNode* root);
 
 public:
-  ExprTree(vector<char> &tokens);
-  IteratorProxy<vector<ExprNode*>> iter_leaves();
-  // IteratorProxy<IteratorPostorder> iter_postorder();
-};
+  // typedef PostorderIterator const_iterator;
+  // typedef const_iterator iterator;
 
+  ExprTree(vector<char> &tokens);
+  PostorderIterator begin() const;
+  PostorderIterator end() const;
+};
 
 #endif

@@ -9,9 +9,10 @@ int main() {
   auto tokens = get_tokens(); 
   ExprTree tree(tokens);
 
-  for (auto node : tree.iter_leaves()) {
-    std::cout << node->code << '\n';
-  }
 
+  for (ExprNode& node : tree) {
+    std::cout << node.code << ' ';
+  }
+  std::cout << '\n';
   // truth_table();
 }
